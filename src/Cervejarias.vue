@@ -48,10 +48,10 @@
           </thead>
           <tbody>
 
-            <tr>
-              <td>Misty Abbott</td>
-              <td>Bass Guitar</td>
-              <td>Bass Guitar</td>
+            <tr v-for="brewery in breweries">
+              <td>{{brewery.name}}</td>
+              <td>{{brewery.city}}</td>
+              <td>{{brewery.phone}}</td>
               <td class="is-icon">
                 <a href="#">
                   <i class="fa fa-map-marker"></i>
@@ -120,7 +120,8 @@ export default {
           loadBreweries
     },
     getters: {
-      isLoading
+      isLoading,
+      breweries: store => store.breweries.list
     }
   },
   created(){
