@@ -13,9 +13,9 @@ npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
-
 ```
 
+Aguarde alguns segundos para a compilação e o início do servidor, então acesse `http://localhost:3000`. 
 
 
 ## API
