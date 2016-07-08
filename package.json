@@ -10,14 +10,15 @@
   "scripts": {
     "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js",
     "serve": "http-server -c 1 -a localhost",
-    "dev": "npm-run-all --parallel watchify serve",
+    "api": "json-server --watch cervejarias.json",
+    "dev": "npm-run-all --parallel watchify serve api",
     "build": "cross-env NODE_ENV=production browserify src/main.js | uglifyjs -c warnings=false -m > dist/build.js"
   },
   "dependencies": {
     "bulma": "^0.1.0",
     "font-awesome": "^4.6.3",
     "vue": "^1.0.0",
-    "vue-router": "^0.7.13",
+    "vue-resource": "^0.9.3",
     "vuex": "^1.0.0-rc.2"
   },
   "devDependencies": {
