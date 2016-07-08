@@ -8,6 +8,8 @@ export default new Vuex.Store({
     loading: false,
     breweries: {
       list: [],
+      page: 1,
+      total: 0,
       selected: {}
     },
     beers: {
@@ -18,6 +20,9 @@ export default new Vuex.Store({
   mutations: {
     SET_BREWERIES(store, obj) {
       store.breweries.list = obj
+    },
+    SET_TOTAL_BREWERIES(store, value) {
+      store.breweries.total = parseInt(value)
     },
     SET_BREWERY(store, obj) {
       store.breweries.selected = obj
@@ -31,8 +36,8 @@ export default new Vuex.Store({
     SHOW_LOADING(store) {
       store.loading = true;
     },
-     HIDE_LOADING(store) {
-      store.loading =false;
+    HIDE_LOADING(store) {
+      store.loading = false;
     },
   }
 })
