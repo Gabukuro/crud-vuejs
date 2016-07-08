@@ -1,18 +1,18 @@
 <template>
-  <div id="app" class="container">
-    <h1>{{ msg }}</h1>
+  <div id="app">
+    <Cervejarias></Cervejarias>
   </div>
 </template>
 
 <script>
   import store from './vuex/store.js'
+  import Cervejarias from './cervejarias.vue'
+
 export default {
-  data () {
-    return {
-      msg: 'Vue.js Crud'
-    }
-  },
-  store
+  store,
+  components: {
+    Cervejarias
+  }
 }
 </script>
 <style>
