@@ -24,6 +24,9 @@ export default new Vuex.Store({
     SET_TOTAL_BREWERIES(store, value) {
       store.breweries.total = parseInt(value)
     },
+    CHANGE_BREWERIES_PAGE(store,page){
+      store.breweries.page=page;
+    },
     SET_BREWERY(store, obj) {
       store.breweries.selected = obj
     },

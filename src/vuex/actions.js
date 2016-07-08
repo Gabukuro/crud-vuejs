@@ -18,3 +18,8 @@ export const loadBreweries = function ({ dispatch,state }) {
    )
        
 }
+
+export const changeBreweriesPage = function ({ dispatch,state },page) {
+   dispatch('CHANGE_BREWERIES_PAGE',page)
+   this.loadBreweries()
+}
