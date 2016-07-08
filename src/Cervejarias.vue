@@ -12,8 +12,8 @@
 
       <div class="column is-5">
         <p class="control has-addons">
-          <input class="input is-expanded" type="text" placeholder="Procure pelo nome">
-          <a class="button is-info">Search</a>
+          <input class="input is-expanded" type="text" placeholder="Procure pelo nome" v-model="search">
+          <a class="button is-info" @click="trySearch()">Search</a>
         </p>
 
       </div>
@@ -80,7 +80,8 @@
 export default {
   data () {
     return {
-      title: 'Vue.js Crud'
+      title: 'Vue.js Crud',
+      search: ''
     }
   },
   components: {
@@ -102,7 +103,10 @@ export default {
   },
   methods: {
     onChangePage: function(page){
-      this.changeBreweriesPage(page);
+      this.changeBreweriesPage(page)
+    },
+    trySearch: function(){
+      this.searchBreweries(search)
     }
   }
 }
