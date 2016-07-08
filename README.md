@@ -2,9 +2,12 @@
 
 > Um crud com Vue.js e json-server
 
-## Build Setup
+## Setup
 
-``` bash
+```bash
+# global install
+npm install -g json-server
+
 # install dependencies
 npm install
 
