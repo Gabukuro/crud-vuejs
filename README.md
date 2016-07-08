@@ -8,6 +8,9 @@
 # global install
 npm install -g json-server
 
+git clone https://github.com/danielschmitz/crud-vuejs.git 
+cd crud-vuejs
+
 # install dependencies
 npm install
 
