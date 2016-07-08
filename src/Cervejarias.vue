@@ -1,18 +1,13 @@
 <template>
-<div class="container">
 
-<div class="modal" v-bind:class="{ 'is-active': isLoading }">
-  <div class="modal-background"></div>
-  <div class="modal-container">
-    <div class="modal-content">
-      <a class="button is-large is-danger is-loading">Loading</a>
-    </div>
-  </div>
-  <button class="modal-close"></button>
-</div>
+<a class="fixo button is-large is-danger is-loading" v-show="isLoading">Loading</a>
+
+  <div class="container">
+
+
 
     <h1 class="title">{{title}}</h1>
-    
+
     <div class="columns">
 
       <div class="column is-5">
@@ -24,13 +19,10 @@
       </div>
 
       <div class="column is-5">
-        
+
       </div>
 
     </div>
-
-    
-    
 
     <div class="columns">
 
@@ -73,41 +65,17 @@
           </tbody>
         </table>
 
-        <nav class="pagination">
-          <a class="button">Previous</a>
-          <a class="button">Next page</a>
-          <ul>
-            <li>
-              <a class="button">1</a>
-            </li>
-            <li>
-              <span>...</span>
-            </li>
-            <li>
-              <a class="button">45</a>
-            </li>
-            <li>
-              <a class="button is-primary">46</a>
-            </li>
-            <li>
-              <a class="button">47</a>
-            </li>
-            <li>
-              <span>...</span>
-            </li>
-            <li>
-              <a class="button">86</a>
-            </li>
-          </ul>
-        </nav>
+        <Pagination :total="total" :page="page" @change-page="onChangePage"></Pagination>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import { loadBreweries } from './vuex/actions.js'
+  import { loadBreweries, changeBreweriesPage } from './vuex/actions.js'
   import {isLoading} from './vuex/getters.js'
+  import Pagination from './Pagination.vue'
 
 export default {
   data () {
@@ -115,17 +83,30 @@ export default {
       title: 'Vue.js Crud'
     }
   },
+  components: {
+    Pagination
+  },
   vuex: {
     actions: {
-          loadBreweries
+          loadBreweries,changeBreweriesPage
     },
     getters: {
-      isLoading,
-      breweries: store => store.breweries.list
+      isLoading, 
+      breweries: store => store.breweries.list,
+      total: store => store.breweries.total,
+      page:  store => store.breweries.page
     }
   },
   created(){
     this.loadBreweries();
+  },
+  methods: {
+    onChangePage: function(page){
+      this.changeBreweriesPage(page);
+    }
   }
 }
 </script>
+<style>
+  .fixo{float: right; margin-right: 10px; margin-top: 0px; z-index: 1000;}
+</style>
