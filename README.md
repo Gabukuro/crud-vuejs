@@ -14,9 +14,9 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
-npm run build
 ```
+
+
 
 ## API
 
@@ -50,3 +50,20 @@ DELETE /beer/1 #Deleta a cerveja cujo id é 1
 ```
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##Atenção
+
+Essa é uma app de testes, nao use-a em produção
