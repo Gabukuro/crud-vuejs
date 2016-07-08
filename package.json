@@ -9,9 +9,8 @@
   "author": "Daniel Schmitz <danieljfa@gmail.com>",
   "scripts": {
     "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js",
-    "serve": "http-server -c 1 -a localhost",
-    "api": "json-server --watch cervejarias.json",
-    "dev": "npm-run-all --parallel watchify serve api",
+    "serve": "json-server --watch cervejarias.json --static ./ --routes routes.json",
+    "dev": "npm-run-all --parallel watchify serve",
     "build": "cross-env NODE_ENV=production browserify src/main.js | uglifyjs -c warnings=false -m > dist/build.js"
   },
   "dependencies": {
