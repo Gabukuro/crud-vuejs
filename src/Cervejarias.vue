@@ -1,57 +1,57 @@
 <template>
-  <a class="fixo button is-large is-danger is-loading" v-show="isLoading">Loading</a>
-  <div class="container">
-    <h1 class="title">{{title}}</h1>
-    <div class="columns">
-      <div class="column is-5">
-        <p class="control has-addons">
-          <input class="input is-expanded" type="text" placeholder="Procure pelo nome" v-model="search">
-          <a class="button is-info" @click="searchBreweries">Search</a>
-        </p>
-      </div>
-      <div class="column is-5">
-
-      </div>
+<a class="fixo button is-large is-danger is-loading" v-show="isLoading">Loading</a>
+<div class="container">
+  <h1 class="title">{{title}}</h1>
+  <div class="columns">
+    <div class="column is-5">
+      <p class="control has-addons">
+        <input class="input is-expanded" type="text" placeholder="Procure pelo nome" v-model="search">
+        <a class="button is-info" @click="searchBreweries">Search</a>
+      </p>
     </div>
-    <div class="columns">
-      <div class="column is-12">
-        <table class="table is-narrow is-bordered">
-          <thead>
-            <th>Nome</th>
-            <th>Cidade</th>
-            <th>Telefone</th>
-            <th>Mais</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="brewery in breweries">
-            <td>{{brewery.name}}</td>
-            <td>{{brewery.city}}</td>
-            <td>{{brewery.phone}}</td>
-            <td class="is-icon">
-              <a href="#">
-                <i class="fa fa-map-marker"></i>
-              </a>
-              <a href="#">
-                <i class="fa fa-plus-circle"></i>
-              </a>
-            </td>
-            <td class="is-icon">
+    <div class="column is-5">
 
-              <a href="#">
-                <i class="fa fa-edit"></i>
-              </a>
-              <a href="#">
-                <i class="fa fa-trash"></i>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <Pagination :total="total" :page="page" :itens-per-page="itensPerPage" @change-page="onChangePage"></Pagination>
     </div>
   </div>
+  <div class="columns">
+    <div class="column is-12">
+      <table class="table is-narrow is-bordered">
+        <thead>
+          <th>Nome</th>
+          <th>Cidade</th>
+          <th>Telefone</th>
+          <th>Mais</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="brewery in breweries">
+          <td>{{brewery.name}}</td>
+          <td>{{brewery.city}}</td>
+          <td>{{brewery.phone}}</td>
+          <td class="is-icon">
+            <a href="#">
+              <i class="fa fa-map-marker"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-plus-circle"></i>
+            </a>
+          </td>
+          <td class="is-icon">
+
+            <a href="#">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="#">
+              <i class="fa fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <Pagination :total="total" :page="page" :itens-per-page="itensPerPage" @change-page="onChangePage"></Pagination>
+  </div>
+</div>
 </div>
 </template>
 
@@ -61,7 +61,7 @@
   export default {
     data () {
       return {
-        loading: false,
+        isLoading: false,
         title: 'Vue.js Crud',
         search: '',
         breweries: [],
@@ -74,19 +74,16 @@
     components: {
       Pagination
     },
-    created(){
-      this.loadBreweries();
-    },
     methods: {
       onChangePage(page){
         this.page = page
         this.loadBreweries()
       },
       showLoading(){
-        this.loading=true;
+        this.isLoading=true;
       },
       hideLoading(){
-        this.loading=false;
+        this.isLoading=false;
       },
       loadBreweries(){
 
@@ -111,7 +108,10 @@
        searchBreweries(){
 
        }
-     }
+     },
+      created(){
+      this.loadBreweries();
+    },
    }
  </script>
  <style>
