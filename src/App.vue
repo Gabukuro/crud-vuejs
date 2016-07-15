@@ -5,15 +5,12 @@
 </template>
 
 <script>
-  import store from './vuex/store.js'
   import Cervejarias from './cervejarias.vue'
-
-export default {
-  store,
-  components: {
-    Cervejarias
+  export default {
+    components: {
+      Cervejarias
+    }
   }
-}
 </script>
 <style>
   body {
