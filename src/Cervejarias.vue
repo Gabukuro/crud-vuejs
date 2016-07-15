@@ -49,6 +49,7 @@
           </tr>
         </tbody>
       </table>
+      <Pagination :total="total" :page="page" :itens-per-page="itensPerPage" @change-page="onChangePage"></Pagination>
     </div>
   </div>
 </div>
