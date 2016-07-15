@@ -5,7 +5,7 @@ export const loadBreweries = function ({ dispatch,state }) {
    let start = state.breweries.page*10-9
    let end = state.breweries.page*10
 
-   this.$http.get(`/api/breweries?_start=${start}&_end=${end}`) .then(
+   this.$http.get(`/breweries?_start=${start}&_end=${end}`) .then(
      response=>{
        dispatch('HIDE_LOADING')
        dispatch('SET_BREWERIES',response.json())
