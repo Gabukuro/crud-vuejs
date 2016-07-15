@@ -29,10 +29,10 @@
 </template>
 <script>
   export default{
-    props: ["total","page"],
+    props: ["total","page","itensPerPage"],
     computed: {
       totalPages: function(){
-        return Math.round(this.total/10)
+        return Math.ceil(this.total/this.itensPerPage)||1
       },
       showNextButton: function(){
        return  this.page!=this.totalPages
