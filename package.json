@@ -9,7 +9,7 @@
   "author": "Daniel Schmitz <danieljfa@gmail.com>",
   "scripts": {
     "watchify": "watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js",
-    "serve": "json-server --watch cervejarias.json --static ./ --port $PORT||3000",
+    "serve": "json-server --watch cervejarias.json --static ./ --port 8080",
     "dev": "npm-run-all --parallel watchify serve",
     "build": "cross-env NODE_ENV=production browserify src/main.js | uglifyjs -c warnings=false -m > dist/build.js"
   },
