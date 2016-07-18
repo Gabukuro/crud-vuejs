@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import Cervejarias from './cervejarias.vue'
+  import Cervejarias from './Cervejarias.vue'
   export default {
     components: {
       Cervejarias
