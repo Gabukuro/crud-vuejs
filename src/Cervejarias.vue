@@ -9,9 +9,15 @@
           <a class="button is-info" @click.prevent="searchBreweries">Search</a>
         </p>
       </div>
-      <div class="column is-5">
-
+      <div class="column is-6">
+         
       </div>
+      <div class="column is-1">
+        <a class="button is-info" @click.prevent="newBreweries">Novo</a>
+      </div>
+
+
+
     </div>
     <div class="columns">
       <div class="column is-12">
@@ -39,7 +45,7 @@
             </td>
             <td class="is-icon">
 
-              <a href="#">
+              <a href="#" @click.prevent="editBrewery(brewery)">
                 <i class="fa fa-edit"></i>
               </a>
               <a href="#">
@@ -51,6 +57,48 @@
       </table>
       <Pagination :total="total" :page="page" :itens-per-page="itensPerPage" @change-page="onChangePage"></Pagination>
     </div>
+  </div>
+</div>
+
+<div id="modal_brewery" class="modal" :class="{'is-active':showModal}">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Cervejaria: {{selected.name}}</p>
+      <button class="delete" @click.prevent="showModal=false"></button>
+    </header>
+    <section class="modal-card-body">
+
+    <div class="columns">
+      <div class="column">
+        <label class="label">Nome</label>
+          <p class="control">
+            <input class="input" type="text" placeholder="Text input" v-model="selected.name">
+          </p>
+      </div>
+      <div class="column">
+         <label class="label">Código</label>
+    <p class="control">
+      <input class="input" type="text" placeholder="Código" v-model="selected.code">
+    </p>
+      </div>
+      </div>
+
+      <label class="label">Descrição</label>
+      <p class="control">
+        <textarea class="textarea" placeholder="Textarea" v-model="selected.descript"></textarea>
+      </p>
+      
+   <label class="label">Website</label>
+    <p class="control">
+      <input class="input" type="text" placeholder="Text input" v-model="selected.website">
+    </p>
+
+    </section>
+    <footer class="modal-card-foot">
+      <a class="button is-primary" @click.prevent="saveBrewery">Salvar</a>
+      <a class="button" @click.prevent="showModal=false">Cancelar</a>
+    </footer>
   </div>
 </div>
 </template>
@@ -68,7 +116,8 @@
         page: 1,
         total: 0,
         selected: {},
-        itensPerPage: 10
+        itensPerPage: 10,
+        showModal:false
       }
     },
     components: {
@@ -112,6 +161,45 @@
        },
        searchBreweries(){
         this.loadBreweries()
+       },
+       newBreweries(){
+        this.selected={}
+        this.showModal = true;
+       },
+       editBrewery(brewery){
+        this.selected=brewery
+        this.showModal = true;
+       },
+       saveBrewery(){
+        if (this.selected.id!=null){  //EDIT
+          this.$http.put(`/breweries/${this.selected.id}`,this.selected).then(
+            response=>{
+              this.$set('selected',{})
+              this.$set('showModal',false)
+            },
+            error=>{
+              console.error(error)
+            }
+            ).finally(
+              this.loadBreweries()
+            )
+          }
+          else
+          { //NEW
+            this.$http.post(`/breweries`,this.selected).then(
+            response=>{
+              this.$set('selected',{})
+              this.$set('showModal',false)
+            },
+            error=>{
+              console.error(error)
+            }
+            ).finally(
+              this.loadBreweries()
+            )
+          }
+
+
        }
      },
      created(){
