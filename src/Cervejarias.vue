@@ -48,7 +48,7 @@
               <a href="#" @click.prevent="editBrewery(brewery)">
                 <i class="fa fa-edit"></i>
               </a>
-              <a href="#">
+              <a href="#" @click.prevent="removeBrewery(brewery)">
                 <i class="fa fa-trash"></i>
               </a>
             </td>
@@ -105,6 +105,7 @@
 
 <script>
   import Pagination from './Pagination.vue'
+  
 
   export default {
     data () {
@@ -170,6 +171,26 @@
         this.selected=brewery
         this.showModal = true;
        },
+       removeBrewery(brewery){
+        let self = this;
+        swal({  title: "Você tem certeza?",
+                 text: `Deseja apagar "${brewery.name}"`,   
+                 type: "warning",   
+                 showCancelButton: true,   
+                 confirmButtonColor: "#DD6B55",   
+                 cancelButtonText: "Cancelar",
+                 confirmButtonText: "Sim, pode apagar!", 
+                 showLoaderOnConfirm: true,  
+                 closeOnConfirm: false }, function(){   
+                  
+                  self.$http.delete(`/breweries/${brewery.id}`).then(
+                    result=>{
+                      swal("Cervejaria removida!")
+                      self.loadBreweries()
+                    })
+        });
+
+       },
        saveBrewery(){
         if (this.selected.id!=null){  //EDIT
           this.$http.put(`/breweries/${this.selected.id}`,this.selected).then(
@@ -198,8 +219,6 @@
               this.loadBreweries()
             )
           }
-
-
        }
      },
      created(){
